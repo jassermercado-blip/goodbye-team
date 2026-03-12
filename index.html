@@ -1,25 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OG TRANSFORMATION TEAM</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; display: flex; height: 100vh; justify-content: center; align-items: center; margin: 0; text-align: center; }
-        .box { border: 2px solid #00ffcc; padding: 50px; border-radius: 20px; box-shadow: 0 0 20px #00ffcc; }
-        h1 { color: #00ffcc; margin: 0; }
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            overflow: hidden; 
+            text-align: center;
+        }
+
+        /* Container for the sliding effect */
+        #main-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+        }
+
+        .box { 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            border: 2px solid #00ffcc; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 0 20px #00ffcc;
+            background: #000;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* The Letter Box (Starts hidden to the right) */
+        #letter-box {
+            opacity: 0;
+            transform: translate(150%, -50%); /* Start way off to the right */
+            max-height: 70vh;
+            overflow-y: auto;
+            text-align: left;
+            border-color: #ffcc00;
+            box-shadow: 0 0 20px #ffcc00;
+        }
+
+        h1 { color: #00ffcc; margin: 0; font-size: 2rem; }
         .team { font-size: 1.5rem; font-weight: bold; margin: 20px 0; color: #ffcc00; }
-        .btn { background: #00ffcc; color: #000; border: none; padding: 15px 30px; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 20px; }
-        .btn:hover { background: #fff; }
+        
+        .letter-text {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #eee;
+            white-space: pre-line; /* Keeps your paragraph spacing */
+        }
+
+        .btn { 
+            background: #00ffcc; 
+            color: #000; 
+            border: none; 
+            padding: 15px 30px; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: inline-block; 
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #fff; transform: scale(1.05); }
+
+        /* Animation Classes */
+        .slide-out {
+            transform: translate(-250%, -50%) !important;
+            opacity: 0;
+        }
+
+        .slide-in {
+            transform: translate(-50%, -50%) !important;
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
 
-    <div class="box">
-        <h1>You will be Miss guys</h1>
-        <div class="team">OG TRANSFORMATION TEAM</div>
-        <p>GOODLUCK GUYS SEE YOU ON THE OTHER SIDE</p>
-        
-        <a href="https://www.google.com" target="_blank" class="btn">PROCEED TO THE OTHER SIDE</a>
+    <div id="main-container">
+        <div id="welcome-box" class="box">
+            <h1>You will be Miss guys</h1>
+            <div class="team">OG TRANSFORMATION TEAM</div>
+            <p>GOODLUCK GUYS SEE YOU ON THE OTHER SIDE</p>
+            <button class="btn" onclick="showLetter()">PROCEED TO THE OTHER SIDE</button>
+        </div>
+
+        <div id="letter-box" class="box">
+            <h2 style="color: #ffcc00; margin-top: 0;">A Message for the Team</h2>
+            <div class="letter-text">
+                Hi team,
+                Before I leave, I just want to say that I will truly miss all of you a lot. Working with this team has been a really meaningful experience for me, and I’m very thankful for all the moments we shared — the help, the teamwork, the laughs, and even the stressful days that we managed to get through together. You all made the work environment feel lighter and more enjoyable.
+
+                Please take care of yourselves and continue supporting each other just like you always do. This team is full of kind and hardworking people, and I’m proud to have been part of it. I learned many things from all of you, and I will always carry those lessons with me.
+
+                If any of you ever find things hard or feel overwhelmed, don’t hesitate to reach out to me. My line will always be open. You can call or message me anytime if you need someone to talk to.
+
+                Especially you, <strong>Glaiza</strong> — if you ever feel down, depressed, or if things get heavy, please open up. Ayaw pa dala sa problema. Don’t carry everything alone. I got you all, always. Even if I’m no longer in the company, I’m still here as a friend.
+
+                Thank you for everything, team. I will miss you all a lot and I’m wishing everyone success, happiness, and better opportunities ahead.
+
+                Take care always.
+            </div>
+            <a href="https://www.google.com" target="_blank" class="btn" style="background: #ffcc00;">CLOSE & CONTINUE</a>
+        </div>
     </div>
+
+    <script>
+        function showLetter() {
+            // Slide the first box out to the left
+            document.getElementById('welcome-box').classList.add('slide-out');
+            
+            // Slide the letter box in from the right
+            setTimeout(() => {
+                document.getElementById('letter-box').classList.add('slide-in');
+            }, 300); // Slight delay for a smoother "passing" effect
+        }
+    </script>
 
 </body>
 </html>
